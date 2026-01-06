@@ -8,7 +8,9 @@ function ConsultaVentas() {
     const [success, setSuccess] = useState('');
     const [loggedInUser, setLoggedInUser] = useState(null);
 
-    const API_URL = 'http://127.0.0.1:8000';
+    //const API_URL = 'http://127.0.0.1:8000';
+    const API_URL = 'https://backend-ventas-ekhi.onrender.com';
+  
 
     useEffect(() => {
         const user = localStorage.getItem('loggedInUser');

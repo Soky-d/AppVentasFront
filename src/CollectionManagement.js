@@ -15,8 +15,9 @@ function CollectionManagement() {
     });
     const [clientBalance, setClientBalance] = useState(null); // Para almacenar el saldo del cliente
 
-    const API_URL = 'http://127.0.0.1:8000'; // Asegúrate de que esta URL sea la correcta para tu backend
-
+    //const API_URL = 'http://127.0.0.1:8000'; // Asegúrate de que esta URL sea la correcta para tu backend
+    const API_URL = 'https://backend-ventas-ekhi.onrender.com';
+ 
     // Cargar información del usuario logeado al inicio
     // useEffect(() => {
     //    const user = localStorage.getItem('loggedInUser');

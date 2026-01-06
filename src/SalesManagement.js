@@ -15,7 +15,9 @@ function SalesManagement() {
         dni: '', nombres: '', fecha: '', cantidad: '', precio_unitario: ''
     });
 
-    const API_URL = 'http://127.0.0.1:8000';
+    //const API_URL = 'http://127.0.0.1:8000';
+    const API_URL = 'https://backend-ventas-ekhi.onrender.com';
+   
 
     // Cargar información del usuario logeado al inicio
     useEffect(() => {
