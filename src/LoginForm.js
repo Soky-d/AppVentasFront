@@ -11,8 +11,8 @@ function LoginForm() {
     const [success, setSuccess] = useState('');
     const navigate = useNavigate(); // Inicializar useNavigate
 
-    //const API_URL = 'http://127.0.0.1:8000'; // Asegúrate de que esta URL sea la correcta para tu backend
-    const API_URL = 'https://backend-ventas-ekhi.onrender.com';
+    const API_URL = 'http://127.0.0.1:8000'; // Asegúrate de que esta URL sea la correcta para tu backend
+    //const API_URL = 'https://backend-ventas-ekhi.onrender.com';
     
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -89,7 +89,7 @@ function LoginForm() {
                         type="text"
                         id="emailOrUsername"
                         value={emailOrUsername}
-                        onChange={(e) => setEmailOrUsername(e.target.value)}
+                        onChange={(e) => setEmailOrUsername(e.target.value.toUpperCase())}
                         required
                         style={{ width: '100%', padding: '8px', boxSizing: 'border-box', border: '1px solid #ddd', borderRadius: '4px' }}
                     />
@@ -100,7 +100,7 @@ function LoginForm() {
                         type="password"
                         id="password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setPassword(e.target.value.toUpperCase())}
                         required
                         style={{ width: '100%', padding: '8px', boxSizing: 'border-box', border: '1px solid #ddd', borderRadius: '4px' }}
                     />

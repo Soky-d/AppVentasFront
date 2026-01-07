@@ -21,8 +21,15 @@ function ConsultaVentasprm() {
             setError("No hay información del usuario logeado. Por favor, inicie sesión.");
         }
 
+        //if (loggedInUser?.tipo === 2) {
+        //    setPromo(loggedInUser.promo); // ← valor por defecto
+        //}
+    //}, [loggedInUser]);
+    }, []);
+
+    useEffect(() => {
         if (loggedInUser?.tipo === 2) {
-            setPromo(loggedInUser.promo); // ← valor por defecto
+            setPromo(loggedInUser.promo);
         }
     }, [loggedInUser]);
 
