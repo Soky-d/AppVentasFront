@@ -34,14 +34,14 @@ function Dashboard() {
                     {(role === 1 || role === 2) && (
                         <li style={{ marginBottom: '15px' }}>
                             <Link to="/dashboard/ventas-entradas" style={{ color: 'white', textDecoration: 'none', fontSize: '1.1em', display: 'block', padding: '10px 15px', borderRadius: '5px', transition: 'background-color 0.3s' }}>
-                                Ventas - Entradas
+                                Registro de Asistencias
                             </Link>
                         </li>
                     )}
                     {(role === 1 || role === 2) && (
                         <li style={{ marginBottom: '15px' }}>
                             <Link to="/dashboard/cobranza" style={{ color: 'white', textDecoration: 'none', fontSize: '1.1em', display: 'block', padding: '10px 15px', borderRadius: '5px', transition: 'background-color 0.3s' }}>
-                                Cobranza
+                                Pagos
                             </Link>
                         </li>
                     )}
