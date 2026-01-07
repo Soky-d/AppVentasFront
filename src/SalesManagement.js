@@ -286,7 +286,7 @@ function SalesManagement() {
 
     return (
         <div style={{ maxWidth: '1000px', margin: '50px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-            <h2>Gestión de Ventas de Entradas</h2>
+            <h2>Gestión de Registro de Asistencia</h2>
 
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {success && <p style={{ color: 'green' }}>{success}</p>}
@@ -304,7 +304,7 @@ function SalesManagement() {
             )}
 
             <button onClick={openCreateForm} style={{ padding: '10px 15px', backgroundColor: '#28a745', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginBottom: '20px' }}>
-                Crear Nueva Venta
+                Crear Registro de Asistencia
             </button>
 
             {showForm && (
