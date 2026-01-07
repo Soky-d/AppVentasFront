@@ -15,6 +15,11 @@ function SalesManagement() {
         dni: '', nombres: '', fecha: '', cantidad: '', precio_unitario: ''
     });
 
+    const isDniCompleto = formData.dni.length === 8;
+
+    //Cmbio para el DNI 1
+    const [loadingDNI, setLoadingDNI] = useState(false);
+
     //const API_URL = 'http://127.0.0.1:8000';
     const API_URL = 'https://backend-ventas-ekhi.onrender.com';
    
@@ -61,6 +66,29 @@ function SalesManagement() {
             setLoading(false);
         }
     };
+
+
+     // Cambio por el DNI 2
+    const fetchNombrePorDNI = async (dni) => {
+        if (dni.length !== 8) return;
+
+        setLoadingDNI(true);
+        try {
+            const response = await fetch(`${API_URL}/dni/${dni}`);
+            if (!response.ok) return;
+
+            const data = await response.json();
+            setFormData(prev => ({
+                ...prev,
+                nombres: data.nombre_completo.toUpperCase()
+            }));
+        } catch (error) {
+            console.error("Error consultando DNI");
+        } finally {
+            setLoadingDNI(false);
+        }
+    };
+
 
     const handleCreateSale = async (event) => {
         event.preventDefault();
@@ -201,10 +229,31 @@ function SalesManagement() {
         }
     }, [loggedInUser]); // Dependencia del efecto para recargar cuando el usuario logeado cambie
 
+    
+    // Cambio del DNI 3
+    //const handleInputChange = (e) => {
+    //    const { name, value } = e.target;
+    //    setFormData(prev => ({ ...prev, [name]: value.toUpperCase() }));
+    //};
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+
+        if (name === "dni") {
+            const dni = value.replace(/\D/g, "");
+            setFormData(prev => ({ ...prev, dni }));
+
+            if (dni.length === 8) {
+                fetchNombrePorDNI(dni);
+            } else {
+                setFormData(prev => ({ ...prev, nombres: "" }));
+            }
+            return;
+        }
+
         setFormData(prev => ({ ...prev, [name]: value.toUpperCase() }));
     };
+
 
     const openCreateForm = () => {
         setCurrentSale(null);
@@ -231,6 +280,7 @@ function SalesManagement() {
         setFormData({ dni: '', nombres: '', fecha: '', cantidad: '', precio_unitario: '' });
         setShowForm(false);
     };
+
 
     // --- Renderizado del Componente ---
 
@@ -267,7 +317,23 @@ function SalesManagement() {
                         </div>
                         <div style={{ marginBottom: '10px' }}>
                             <label style={{ display: 'block', marginBottom: '5px' }}>Nombres Comprador:</label>
-                            <input type="text" name="nombres" value={formData.nombres} onChange={handleInputChange} required style={{ width: '100%', padding: '8px', boxSizing: 'border-box', border: '1px solid #ddd', borderRadius: '4px' }} />
+                            {/* Cambio por el DNI 4 */} 
+                            {/*<input type="text" name="nombres" value={formData.nombres} onChange={handleInputChange} required style={{ width: '100%', padding: '8px', boxSizing: 'border-box', border: '1px solid #ddd', borderRadius: '4px' }} />*/}
+                            <input
+                                type="text"
+                                name="nombres"
+                                value={formData.nombres}
+                                onChange={handleInputChange}
+                                readOnly={formData.dni.length === 8}
+                                style={{
+                                    backgroundColor: isDniCompleto ? '#e9ecef' : 'white',
+                                    cursor: isDniCompleto ? 'not-allowed' : 'text',
+                                    width: '100%',
+                                    padding: '8px',
+                                    border: '1px solid #ddd',
+                                    borderRadius: '4px'
+                                }}
+                            />                        
                         </div>
                         <div style={{ marginBottom: '10px' }}>
                             <label style={{ display: 'block', marginBottom: '5px' }}>Fecha de Compra:</label>
