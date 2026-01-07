@@ -309,7 +309,7 @@ function SalesManagement() {
 
             {showForm && (
                 <div style={{ border: '1px solid #eee', padding: '15px', borderRadius: '8px', marginBottom: '20px', backgroundColor: '#f9f9f9' }}>
-                    <h3>{currentSale ? 'Editar Venta' : 'Crear Venta'}</h3>
+                    <h3>{currentSale ? 'Editar Asistencia' : 'Crear Asistencia'}</h3>
                     <form onSubmit={currentSale ? handleUpdateSale : handleCreateSale}>
                         <div style={{ marginBottom: '10px' }}>
                             <label style={{ display: 'block', marginBottom: '5px' }}>DNI Comprador:</label>

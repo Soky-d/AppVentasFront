@@ -278,7 +278,7 @@ function CollectionManagement() {
 
             {showForm && (
                 <div style={{ border: '1px solid #eee', padding: '15px', borderRadius: '8px', marginBottom: '20px', backgroundColor: '#f9f9f9' }}>
-                    <h3>{currentCollection ? 'Editar Cobranza' : 'Registrar Cobranza'}</h3>
+                    <h3>{currentCollection ? 'Editar Pagos' : 'Registrar Nuevo Pago'}</h3>
                     <form onSubmit={currentCollection ? handleUpdateCollection : handleCreateCollection}>
                         <div style={{ marginBottom: '10px' }}>
                             <label style={{ display: 'block', marginBottom: '5px' }}>DNI Cliente:</label>
@@ -328,9 +328,9 @@ function CollectionManagement() {
                 </div>
             )}
 
-            <h3>Listado de Cobranzas</h3>
+            <h3>Listado de Pagos</h3>
             {loading ? (
-                <p>Cargando cobranzas...</p>
+                <p>Cargando pagos...</p>
             ) : (
                 <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
                     <thead>
