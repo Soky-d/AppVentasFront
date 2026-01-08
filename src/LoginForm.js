@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importar useNavigate
 import { useAuth } from "./auth/AuthContext";
 
+import logo from "./imagenes/logo_3.jpeg";
+
 function LoginForm() {
     const { login } = useAuth();
 
@@ -80,6 +82,13 @@ function LoginForm() {
 
     return (
        <div style={{ maxWidth: '400px', margin: '50px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+            <img
+                src={logo}
+                alt="logo"
+                style={{
+                        maxWidth: "100%"
+                    }}
+            />
             <h1>App Control de Entradas</h1>
             <h2>Iniciar Sesión</h2>
             <form onSubmit={handleSubmit}>
@@ -113,7 +122,6 @@ function LoginForm() {
             </form>
             <h2>RUVAY Soft SAC</h2>
             <h5>Contacto - 999181712</h5>
-            <h5>Para la Asociación de Ex-Alumnas Zoila Hora de Robles</h5>
         </div>
     );
 }

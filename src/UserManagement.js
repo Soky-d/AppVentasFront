@@ -18,17 +18,15 @@ function UserManagement() {
     const USER_TYPES = [
         { value: '1', label: 'Administrador' },
         { value: '2', label: 'Promotor' },
-        { value: '3', label: 'Usuario' },
     ];
 
     const USER_TYPE_LABELS = {
         1: 'Administrador',
-        2: 'Promotor',
-        3: 'Usuario'
+        2: 'Promotor'
     };
 
     //const API_URL = 'http://127.0.0.1:8000'; // Asegúrate de que esta URL sea la correcta para tu backend
-    const API_URL = 'https://backend-ventas-ekhi.onrender.com';
+    const API_URL = 'https://backend-ventas-ekhi.onrender.com'; 
  
     // --- Funciones de Interacción con la API ---
 
@@ -62,7 +60,7 @@ function UserManagement() {
         setSuccess('');
 
         for (const key in formData) {
-             if (formData[key] === '' && key !== 'promo' && key !== 'telefono'){ // 'promo' y 'telefono' pueden ser Optional en algunos casos
+             if (formData[key] === '' && key !== 'email' && key !== 'telefono'){ // 'promo' y 'telefono' pueden ser Optional en algunos casos
                 // Esta validación asume que solo 'promo' y 'telefono' podrían ser opcionales si se han definido así en UserCreate
                 // Si tienes otros campos Optional en UserCreate, añádelos aquí.
                 setError(`El campo '${key.replace('_', ' ').toUpperCase()}' es obligatorio.`);
@@ -235,7 +233,9 @@ function UserManagement() {
                 <div style={{ border: '1px solid #eee', padding: '15px', borderRadius: '8px', marginBottom: '20px', backgroundColor: '#f9f9f9' }}>
                     <h3>{currentUser ? 'Editar Usuario' : 'Crear Usuario'}</h3>
                     <form onSubmit={currentUser ? handleUpdateUser : handleCreateUser}>
-                        {Object.keys(formData).map(key => (
+                        {Object.keys(formData)
+                          .filter(key => !(key === 'email' && (formData.tipo === '' || formData.tipo === '1' || formData.tipo === '2')))
+                          .map(key => (
                             <div key={key} style={{ marginBottom: '10px' }}>
                                 <label style={{ display: 'block', marginBottom: '5px' }}>{key.replace('_', ' ').toUpperCase()}:</label>
                                 {key === 'tipo' ? (
@@ -284,7 +284,7 @@ function UserManagement() {
                     <thead>
                         <tr style={{ backgroundColor: '#f2f2f2' }}>
                             <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Nombre Completo</th>
-                            <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Email</th>
+                            {/*<th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Email</th>*/}
                             <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Usuario</th>
                             <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Tipo</th>
                             <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Acciones</th>
@@ -294,7 +294,7 @@ function UserManagement() {
                         {users.map(user => (
                             <tr key={user.id}>
                                 <td style={{ border: '1px solid #ddd', padding: '8px' }}>{`${user.nombres} ${user.apel_pat} ${user.apel_mat}`}</td>
-                                <td style={{ border: '1px solid #ddd', padding: '8px' }}>{user.email}</td>
+                                {/*<td style={{ border: '1px solid #ddd', padding: '8px' }}>{user.email}</td>*/}
                                 <td style={{ border: '1px solid #ddd', padding: '8px' }}>{user.usuario}</td>
                                 <td style={{ border: '1px solid #ddd', padding: '8px' }}>{USER_TYPE_LABELS[user.tipo] || 'Desconocido'}</td>
                                 <td style={{ border: '1px solid #ddd', padding: '8px' }}>

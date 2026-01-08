@@ -4,6 +4,7 @@ import { useAuth } from "./auth/AuthContext";
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 import banner from "./imagenes/logo_ruway.png";
+import logo from "./imagenes/logo_1.jpeg";
 
 function Dashboard() {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ function Dashboard() {
     };
 
     return (
-        <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f0f2f5' }}>
+        <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#ffffff' }}>
             {/* Menú Lateral */}
             <div style={{ width: '250px', backgroundColor: '#343a40', color: 'white', padding: '20px', boxShadow: '2px 0 5px rgba(0,0,0,0.1)' }}>
                 <h2 style={{ textAlign: 'center', marginBottom: '30px', color: '#61dafb' }}>App Control Entradas</h2>
@@ -73,6 +74,7 @@ function Dashboard() {
                             </Link>
                         </li>
                     )}
+
                     
                     <li style={{ marginTop: '50px' }}>
                         <button onClick={handleLogout} style={{ width: '100%', padding: '10px 15px', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontSize: '1em', transition: 'background-color 0.3s' }}>
@@ -87,10 +89,7 @@ function Dashboard() {
                         src={banner}
                         alt="Banner"
                         style={{
-                            maxWidth: "50%",
-                            height: "auto",
-                            borderRadius: "8px",
-                            boxShadow: "0 2px 6px rgba(0,0,0,0.15)"
+                            maxWidth: "50%"
                         }}
                     />
                 </div>
@@ -98,7 +97,15 @@ function Dashboard() {
 
             {/* Contenido Principal del Dashboard */}
             <div style={{ flexGrow: 1, padding: '20px' }}>
-                <h1 style={{ marginBottom: '30px', color: '#333' }}>Asociación de ExAlumnas - Zoila Hora de Robles</h1>
+               {/* <h1 style={{ marginBottom: '30px', color: '#333' }}>Asociación de ExAlumnas - Zoila Hora de Robles</h1>*/}
+                <img
+                        src={logo}
+                        alt="logo"
+                        style={{
+                            maxWidth: "50%",
+                            height: "auto"
+                        }}
+               />
                 <Outlet /> {/* Aquí se renderizarán los componentes hijos de las rutas */}
             </div>
         </div>
