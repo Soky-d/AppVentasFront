@@ -12,10 +12,11 @@ function SalesManagement() {
     const [loggedInUser, setLoggedInUser] = useState(null); // Estado para el usuario logeado
 
     const [formData, setFormData] = useState({
-        dni: '', nombres: '', fecha: '', cantidad: '', precio_unitario: ''
+        dni: '', nombres: '', fecha: '', cantidad: '1', precio_unitario: '120.00'
     });
 
     const isDniCompleto = formData.dni.length === 8;
+    const hasNombre = formData.nombres?.trim() !== '';
 
     //Cmbio para el DNI 1
     const [loadingDNI, setLoadingDNI] = useState(false);
@@ -66,6 +67,12 @@ function SalesManagement() {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        if (formData.dni.length < 8) {
+            setFormData(prev => ({ ...prev, nombres: '' }));
+        }
+    }, [formData.dni]);
 
 
      // Cambio por el DNI 2
@@ -137,7 +144,7 @@ function SalesManagement() {
                 throw new Error(errorMessage);
             }
             setSuccess('Venta creada exitosamente');
-            setFormData({ dni: '', nombres: '', fecha: '', cantidad: '', precio_unitario: '' });
+            setFormData({ dni: '', nombres: '', fecha: '', cantidad: '1', precio_unitario: '120.00' });
             setShowForm(false);
             fetchSales();
         } catch (err) {
@@ -178,7 +185,7 @@ function SalesManagement() {
                 throw new Error(errorMessage);
             }
             setSuccess('Venta actualizada exitosamente');
-            setFormData({ dni: '', nombres: '', fecha: '', cantidad: '', precio_unitario: '' });
+            setFormData({ dni: '', nombres: '', fecha: '', cantidad: '1', precio_unitario: '120.00' });
             setCurrentSale(null);
             setShowForm(false);
             fetchSales();
@@ -257,7 +264,7 @@ function SalesManagement() {
 
     const openCreateForm = () => {
         setCurrentSale(null);
-        setFormData({ dni: '', nombres: '', fecha: '', cantidad: '', precio_unitario: '' });
+        setFormData({ dni: '', nombres: '', fecha: '', cantidad: '1', precio_unitario: '120.00' });
         setShowForm(true);
         setError('');
         setSuccess('');
@@ -277,7 +284,7 @@ function SalesManagement() {
 
     const closeForm = () => {
         setCurrentSale(null);
-        setFormData({ dni: '', nombres: '', fecha: '', cantidad: '', precio_unitario: '' });
+        setFormData({ dni: '', nombres: '', fecha: '', cantidad: '1', precio_unitario: '120.00' });
         setShowForm(false);
     };
 
@@ -324,9 +331,8 @@ function SalesManagement() {
                                 name="nombres"
                                 value={formData.nombres}
                                 onChange={handleInputChange}
-                                readOnly={formData.dni.length === 8}
                                 style={{
-                                    backgroundColor: isDniCompleto ? '#e9ecef' : 'white',
+                                    backgroundColor: (isDniCompleto && hasNombre) ? '#e9ecef' : 'white',
                                     cursor: isDniCompleto ? 'not-allowed' : 'text',
                                     width: '100%',
                                     padding: '8px',
@@ -341,11 +347,11 @@ function SalesManagement() {
                         </div>
                         <div style={{ marginBottom: '10px' }}>
                             <label style={{ display: 'block', marginBottom: '5px' }}>Cantidad de Entradas:</label>
-                            <input type="number" name="cantidad" value={formData.cantidad} onChange={handleInputChange} required min="1" style={{ width: '100%', padding: '8px', boxSizing: 'border-box', border: '1px solid #ddd', borderRadius: '4px' }} />
+                            <input type="number" name="cantidad" value={formData.cantidad} onChange={handleInputChange} required min="1" readOnly style={{ width: '100%', padding: '8px', boxSizing: 'border-box', border: '1px solid #ddd', borderRadius: '4px' }} />
                         </div>
                         <div style={{ marginBottom: '10px' }}>
                             <label style={{ display: 'block', marginBottom: '5px' }}>Precio Unitario:</label>
-                            <input type="number" name="precio_unitario" value={formData.precio_unitario} onChange={handleInputChange} required min="0.01" step="0.01" style={{ width: '100%', padding: '8px', boxSizing: 'border-box', border: '1px solid #ddd', borderRadius: '4px' }} />
+                            <input type="number" name="precio_unitario" value={formData.precio_unitario} onChange={handleInputChange} required min="0.01" step="0.01" readOnly style={{ width: '100%', padding: '8px', boxSizing: 'border-box', border: '1px solid #ddd', borderRadius: '4px' }} />
                         </div>
                         
                         <button type="submit" style={{ padding: '10px 15px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', marginRight: '10px' }}>

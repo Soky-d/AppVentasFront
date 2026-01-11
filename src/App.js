@@ -10,6 +10,7 @@ import AccountStatement from './AccountStatement'; // Importar el nuevo componen
 import ConsultaVentas from './ConsultaVentas'; // Importar el nuevo componente
 import ConsultaVentasprm from './ConsultaVentasprm'; // Importar el nuevo componente
 import ResumenVentas from './ResumenVentas'; // Importar el nuevo componente
+import RendicionCta from './RendicionCta'; // Importar el nuevo componente
 
 import ProtectedRoute from "./auth/ProtectedRoute";
 
@@ -23,6 +24,7 @@ const EstadoCuenta = () => <h2>Módulo de Estado de Cuenta</h2>;
 const ConsultasVentas = () => <h2>Módulo de Consulta de Ventas</h2>;
 const PromoVenta = () => <h2>Módulo de Consulta de Ventas x Promoción</h2>;
 const ResumenVenta = () => <h2>Módulo de Resumen Ventas</h2>;
+const RendicionCtas = () => <h2>Módulo de Rendición de Cuenta</h2>;
 const WelcomeDashboard = () => <p>Selecciona una opción del menú.</p>;
 
 function App() {
@@ -58,6 +60,7 @@ function App() {
               <Route path="users" element={<UserManagement />} /> {/* Formulario CRUD de Usuarios */}
               <Route path="consulta-ventas"element={<ConsultaVentas />} /> {/* Nueva ruta */}
               <Route path="resumen-ventas" element={<ResumenVentas />} />
+              <Route path="rendicion-cuenta" element={<RendicionCta />} />
             </Route>
 
           </Route>
