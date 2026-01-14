@@ -25,6 +25,8 @@ function UserManagement() {
         2: 'Promotor'
     };
 
+
+    
     //const API_URL = 'http://127.0.0.1:8000'; // Asegúrate de que esta URL sea la correcta para tu backend
     const API_URL = 'https://backend-ventas-ekhi.onrender.com'; 
  

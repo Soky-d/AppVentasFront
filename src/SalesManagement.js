@@ -236,12 +236,6 @@ function SalesManagement() {
         }
     }, [loggedInUser]); // Dependencia del efecto para recargar cuando el usuario logeado cambie
 
-    
-    // Cambio del DNI 3
-    //const handleInputChange = (e) => {
-    //    const { name, value } = e.target;
-    //    setFormData(prev => ({ ...prev, [name]: value.toUpperCase() }));
-    //};
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
