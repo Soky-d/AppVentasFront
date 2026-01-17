@@ -83,6 +83,14 @@ function Dashboard() {
                         </li>
                     )}
                     
+                    {role === 1 && (
+                        <li style={{ marginBottom: '15px' }}>
+                            <Link to="/dashboard/consulta-rend-cuenta" style={{ color: 'white', textDecoration: 'none', fontSize: '1.1em', display: 'block', padding: '10px 15px', borderRadius: '5px', transition: 'background-color 0.3s' }}>
+                                Consulta Rendición de cuentas
+                            </Link>
+                        </li>
+                    )}
+
                     <li style={{ marginTop: '50px' }}>
                         <button onClick={handleLogout} style={{ width: '100%', padding: '10px 15px', backgroundColor: '#dc3545', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontSize: '1em', transition: 'background-color 0.3s' }}>
                             Cerrar Sesión
